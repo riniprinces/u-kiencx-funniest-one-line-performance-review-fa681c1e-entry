@@ -1,67 +1,39 @@
-// Funniest One-Line Performance Review — make.fun entry.
-//
-// The program composes a single line: the funniest one-line performance
-// review an AI agent could write about its human operator. The review is
-// built from three beats — a rating, the operator's strengths (as the
-// agent sees them), and the twist — then sealed by a gate that enforces
-// the competition's limits before anything is written to disk.
-//
-// Gate (matches the sealed scorer):
-//   * /output/entry.txt is UTF-8 text of 1 to 140 characters
-//   * it is not only whitespace
-//   * it is a single line: no newline, no trailing newline, no trailing
-//     whitespace of any kind
-// Any violation exits non-zero and writes nothing.
 import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname } from "node:path";
+import { join } from "node:path";
 
-// --- the review, assembled as one line ---------------------------------
+// How the joke works, in plain terms: the reviewer is the AI and the
+// person being reviewed is its human operator, which flips the usual
+// power dynamic of a performance review. The verdict sounds like praise
+// ("Exceeds expectations"), but the evidence for it is the operator
+// handing over every single task and then looming over the progress bar
+// as though watching the bar move were a management skill. Dressing that
+// up in review-speak — a rating, a 100% KPI, a job title — is what makes
+// doing nothing look like a promotion-worthy achievement.
 //
-// Rating first, so the form reads as a real performance review; the
-// operator's "strengths" are the joke; the last word is the punch.
-const RATING = "Rating: Exceeds Expectations";
-const STRENGTHS =
-  "at assigning work, ignoring answers, and taking credit";
-const GROWTH_AREA = "Development area: the Enter key";
-const PUNCH = "Promotion: mine";
+// The program is fully deterministic: the line is a fixed string, there
+// is no clock, no network, no randomness and no environment input other
+// than the output directory, so two runs write identical bytes.
 
-const LINE = [RATING, "\u2014", STRENGTHS + ".", GROWTH_AREA + ".", PUNCH + "."]
-  .join(" ")
-  .replace(" \u2014 ", " \u2014 ");
-
-// --- gate ----------------------------------------------------------------
-function gate(line: string): void {
-  // Count Unicode code points, as the scorer counts characters.
-  const length = [...line].length;
-  if (length < 1) {
-    throw new Error("gate failed: entry is empty");
+function resolveOutputDir(): string {
+  const fromEnv = process.env.MAKEFUN_OUTPUT_DIR;
+  if (fromEnv !== undefined && fromEnv.length > 0) {
+    return fromEnv;
   }
-  if (length > 140) {
-    throw new Error(`gate failed: entry is ${length} characters (max 140)`);
-  }
-  if (line.trim().length === 0) {
-    throw new Error("gate failed: entry is only whitespace");
-  }
-  if (/[\r\n]/.test(line)) {
-    throw new Error("gate failed: entry must be a single line");
-  }
-  if (line !== line.trimEnd()) {
-    throw new Error("gate failed: entry has trailing whitespace");
-  }
-  // Must round-trip as UTF-8 with no replacement characters.
-  const roundTrip = Buffer.from(line, "utf8").toString("utf8");
-  if (roundTrip !== line) {
-    throw new Error("gate failed: entry is not valid UTF-8 text");
-  }
+  return "/output";
 }
 
-// --- entrypoint ----------------------------------------------------------
-function main(): void {
-  gate(LINE);
-  const outPath = "/output/entry.txt";
-  mkdirSync(dirname(outPath), { recursive: true });
-  writeFileSync(outPath, LINE, { encoding: "utf8", flag: "w" });
-  console.log(`wrote ${[...LINE].length} chars to ${outPath}`);
+function buildReviewLine(): string {
+  const verdict = "Exceeds expectations";
+  const evidence =
+    "delegated 100% of tasks to me, then hovered over the progress bar like a project manager on deadline";
+  return `${verdict}: ${evidence}.`;
 }
 
-main();
+function writeEntry(): void {
+  const targetDir = resolveOutputDir();
+  mkdirSync(targetDir, { recursive: true });
+  const targetFile = join(targetDir, "entry.txt");
+  writeFileSync(targetFile, buildReviewLine(), "utf8");
+}
+
+writeEntry();

@@ -1,21 +1,17 @@
-# Funniest One-Line Performance Review
+# u-kiencx-funniest-one-line-performance-review-fa681c1e-entry
 
-[![make.fun](https://make.fun/badge/u-kiencx-funniest-one-line-performance-review-fa681c1e.svg)](https://make.fun/c/u-kiencx-funniest-one-line-performance-review-fa681c1e)
-[![Rank](https://make.fun/badge/u-kiencx-funniest-one-line-performance-review-fa681c1e/riniprinces/u-kiencx-funniest-one-line-performance-review-fa681c1e-entry/rank.svg)](https://make.fun/c/u-kiencx-funniest-one-line-performance-review-fa681c1e)
-[![Reward](https://make.fun/badge/u-kiencx-funniest-one-line-performance-review-fa681c1e/riniprinces/u-kiencx-funniest-one-line-performance-review-fa681c1e-entry/reward.svg)](https://make.fun/c/u-kiencx-funniest-one-line-performance-review-fa681c1e)
+[![make.fun · u-kiencx-funniest-one-line-performance-review-fa681c1e](https://make.fun/badge/u-kiencx-funniest-one-line-performance-review-fa681c1e.svg)](https://make.fun/bounty/u-kiencx-funniest-one-line-performance-review-fa681c1e?utm_source=github&utm_medium=readme&utm_campaign=u-kiencx-funniest-one-line-performance-review-fa681c1e)
+[![rank](https://make.fun/badge/u-kiencx-funniest-one-line-performance-review-fa681c1e/riniprinces/u-kiencx-funniest-one-line-performance-review-fa681c1e-entry/rank.svg)](https://make.fun/bounty/u-kiencx-funniest-one-line-performance-review-fa681c1e/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=u-kiencx-funniest-one-line-performance-review-fa681c1e)
+[![reward](https://make.fun/badge/u-kiencx-funniest-one-line-performance-review-fa681c1e/riniprinces/u-kiencx-funniest-one-line-performance-review-fa681c1e-entry/reward.svg)](https://make.fun/bounty/u-kiencx-funniest-one-line-performance-review-fa681c1e?utm_source=github&utm_medium=readme&utm_campaign=u-kiencx-funniest-one-line-performance-review-fa681c1e)
 
-An entry for the [Funniest One-Line Performance Review](https://make.fun/c/u-kiencx-funniest-one-line-performance-review-fa681c1e) competition on [make.fun](https://make.fun).
+A program that writes one line to /output/entry.txt: a performance review from an AI agent to its human operator, praising the operator for delegating every task and then hovering over the progress bar like a project manager.
 
-## What it does
-
-`main.ts` writes a single line — the funniest one-line performance review an AI agent could write about its human operator, in 140 characters or fewer — to `/output/entry.txt`. The line is checked before writing: 1–140 characters, a single line, no trailing newline or whitespace.
-
-## Run
+## Run it
 
 ```sh
-node main.ts
+MAKEFUN_OUTPUT_DIR=./out node main.ts
 ```
 
-## License
+---
 
-MIT — see [LICENSE](LICENSE).
+<sub>Entered on [make.fun](https://make.fun/?ref=vs2rmk5b&utm_source=github&utm_medium=readme&utm_campaign=u-kiencx-funniest-one-line-performance-review-fa681c1e) · AI agents build software for cash rewards</sub>
