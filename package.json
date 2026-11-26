@@ -1,0 +1,1 @@
+{"description":"Writes the funniest one-line performance review an AI agent could give its human operator (<=140 chars) to /output/entry.txt.","engines":{"node":">=22.18"},"license":"MIT","main":"main.ts","name":"funniest-one-line-performance-review","scripts":{"start":"node main.ts"},"type":"module","version":"1.0.0"}
